@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class CinemaTicketCounter {
+    public static void main(String[] args) {
+        // Create an array to represent seats (true means booked, false means available)
+        boolean[] seats = new boolean[10]; // Let's say we have 10 seats
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        
+        while(true) {
+            System.out.println("1. Book a seat");
+            System.out.println("2. Cancel a seat");
+            System.out.println("3. Check seat status");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            
+            switch(choice) {
+                case 1:
+                    // Book a seat
+                    System.out.print("Enter seat number to book (0-9): ");
+                    int seatToBook = scanner.nextInt();
+                    if(seats[seatToBook]) {
+                        System.out.println("Seat is already booked.");
+                    } else {
+                        seats[seatToBook] = true;
+                        System.out.println("Seat " + seatToBook + " successfully booked.");
+                    }
+                    break;
+                case 2:
+                    // Cancel a seat
+                    System.out.print("Enter seat number to cancel (0-9): ");
+                    int seatToCancel = scanner.nextInt();
+                    if(seats[seatToCancel]) {
+                        seats[seatToCancel] = false;
+                        System.out.println("Seat " + seatToCancel + " successfully cancelled.");
+                    } else {
+                        System.out.println("Seat is not booked yet.");
+                    }
+                    break;
+                case 3:
+                    // Check seat status
+                    System.out.println("Seat status (true means booked, false means available):");
+                    for (int i = 0; i < seats.length; i++) {
+                        System.out.println("Seat " + i + ": " + seats[i]);
+                    }
+                    break;
+                case 4:
+                    System.out.println("Exiting the program...");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+            }
+        }
+    }
+}
